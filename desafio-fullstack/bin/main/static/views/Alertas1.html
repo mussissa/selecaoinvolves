@@ -1,0 +1,75 @@
+<div class="generic-container">
+        <div class="panel panel-default">
+            <div class="panel-heading"><span class="lead">Lista de Alertas </span></div>
+            <label> Filtrar Por:
+            Tipo
+            <select   ng-model="filtro.flTipo">
+                <option ng-repeat="filtro in alertas " value= "{{filtro.flTipo}}">
+                   {{filtro.flTipo}}
+               </option>
+           </select>
+           Ponto de venda
+           <select  ng-model="ponto.pontoDeVenda">
+               <option ng-repeat="ponto in alertas " value= "{{ponto.pontoDeVenda}}">
+                  {{ponto.pontoDeVenda}}
+            </option>
+            </label>
+          </select>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>ALERTA</th>
+                            <th>PRODUTO/CATEGORIA</th>
+                            <th>TIPO</th>
+                            <th>margem</th>
+                            <th>PARTICIPACAO</th>
+                            <th>DATA</th>
+                                                        
+                            <th width="150"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="alerta in alertas |filter:{flTipo:filtro.flTipo, pontoDeVenda:ponto.pontoDeVenda} ">
+                            <td>{{alerta.descricao}}</td>
+                            <td>{{alerta.produto}}</td>
+                            <td>{{alerta.flTipo}}</td>
+                            <td>{{alerta.margem}}</td>
+                            <td>{{alerta.participacao}}</td>
+                            <td>{{alerta.data}}</td>
+                            <td><button type="button" id="btn-mensagem" data-toggle="modal" data-target="#myModal" ng-click="detalhes(alerta)" class="btn btn-success custom-width">Detalhe</button></td>
+                        </tr>
+                    </tbody>
+                    
+                </table> 
+                </div>       
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body" style="padding:40px 50px;">
+                                <div class="form-group">
+                                    <input type="text" ng-model="items.pontoDeVenda" class="form-control"/>
+                                    <input type="text" ng-model="items.descricao" class="form-control"/>
+                                    <input type="text" ng-model="items.produto" class="form-control"/>
+                                    <input type="text" ng-model="items.flTipo" class="form-control"/>
+                                    <input type="text" ng-model="items.margem" class="form-control"/>
+                                    <input type="text" ng-model="items.participacao" class="form-control"/>
+                                    <input type="text" ng-model="items.data" class="form-control"/>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+        
+        </div>
+    </div>
+
+
+
+</div>
