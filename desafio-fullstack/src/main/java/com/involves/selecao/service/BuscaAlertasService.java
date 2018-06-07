@@ -2,7 +2,6 @@ package com.involves.selecao.service;
 
 import java.util.List;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +13,9 @@ public class BuscaAlertasService {
 	
 	@Autowired
 	private AlertaGateway gateway;
-	
+
 	public List<Alerta> buscarTodos() {
 		return gateway.buscarTodos();
 	}
 
-	public Alerta buscarAlertaPorId(ObjectId objeto){
-		return gateway.buscarPorObjetoId(objeto);
-	}
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.involves.selecao.alerta.Alerta;
 
-import org.bson.types.ObjectId;
 
 public interface AlertaGateway {
 	
@@ -12,6 +11,5 @@ public interface AlertaGateway {
 
 	List<Alerta> buscarTodos();
 	
-	public Alerta buscarPorObjetoId(ObjectId objeto); 
-
+	
 }

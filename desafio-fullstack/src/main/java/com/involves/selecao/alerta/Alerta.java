@@ -4,25 +4,16 @@ import org.bson.types.ObjectId;
 
 public class Alerta {
 
-	private ObjectId id;
 	private String pontoDeVenda;
 	private String descricao;
 	private String produto;
 	private Integer flTipo;
 	private Integer margem;
 	private Integer participacao;
-	private String  data;
-	
+	private ObjectId  data;
 	
 	
 		
-	public ObjectId getObjectId() {
-		return id;
-	}
-	public void setObjectId(ObjectId id) {
-		this.id = id;
-	}
-
 	public String getPontoDeVenda() {
 		return pontoDeVenda;
 	}
@@ -61,10 +52,10 @@ public class Alerta {
 	public void setParticipacao(Integer participacao) {
 		this.participacao = participacao;
 	}
-	public String getData() {
+	public ObjectId getData() {
 		return data;
 	}
-	public void setData(String data) {
+	public void setData (ObjectId data) {
 		this.data = data;
 	}
 

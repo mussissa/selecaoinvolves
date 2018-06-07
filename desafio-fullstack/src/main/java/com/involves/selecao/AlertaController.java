@@ -30,13 +30,6 @@ public class AlertaController {
 		return buscaAlertasService.buscarTodos();
     }
     
-   @RequestMapping("/homepage")
-//    public Alerta homepage(ObjectId id){
-		public void homepage(){
-			System.out.println("aaaaaa");
-       // return buscaAlertasService.buscarAlertaPorId(id);
-    } 
-    
 	@GetMapping("/processar")
     public void processar() {
 		try {

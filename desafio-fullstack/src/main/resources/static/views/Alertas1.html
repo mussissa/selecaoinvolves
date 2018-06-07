@@ -1,75 +1,93 @@
 <div class="generic-container">
         <div class="panel panel-default">
-            <div class="panel-heading"><span class="lead">Lista de Alertas </span></div>
-            <label> Filtrar Por:
-            Tipo
-            <select   ng-model="filtro.flTipo">
-                <option ng-repeat="filtro in alertas " value= "{{filtro.flTipo}}">
-                   {{filtro.flTipo}}
-               </option>
-           </select>
-           Ponto de venda
-           <select  ng-model="ponto.pontoDeVenda">
-               <option ng-repeat="ponto in alertas " value= "{{ponto.pontoDeVenda}}">
-                  {{ponto.pontoDeVenda}}
-            </option>
-            </label>
-          </select>
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th>ALERTA</th>
-                            <th>PRODUTO/CATEGORIA</th>
-                            <th>TIPO</th>
-                            <th>margem</th>
-                            <th>PARTICIPACAO</th>
-                            <th>DATA</th>
-                                                        
-                            <th width="150"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="alerta in alertas |filter:{flTipo:filtro.flTipo, pontoDeVenda:ponto.pontoDeVenda} ">
-                            <td>{{alerta.descricao}}</td>
-                            <td>{{alerta.produto}}</td>
-                            <td>{{alerta.flTipo}}</td>
-                            <td>{{alerta.margem}}</td>
-                            <td>{{alerta.participacao}}</td>
-                            <td>{{alerta.data}}</td>
-                            <td><button type="button" id="btn-mensagem" data-toggle="modal" data-target="#myModal" ng-click="detalhes(alerta)" class="btn btn-success custom-width">Detalhe</button></td>
-                        </tr>
+           <div class="panel-heading"><span class="lead">Lista de Alertas </span></div>
+           <div class="panel-body">
+                <label>
+                        Filtrar Por :
+                        Tipo
+                        <select  class= "tipo" ng-model="filtro">
+                           <option value="">Selecione tipo</option>
+                           <option   ng-repeat="filtro in filtroTipo | filter:search" value= "{{filtro}}">
+                              {{filtro}}
+                           </option>
+                        </select>
+                        Ponto de venda
+                        <select class="pontovenda" ng-model="ponto">
+                           <option value="">Selecione ponto de venda</option>
+                           <option ng-repeat="ponto in filtroPonto | filter:search" value= "{{ponto}}">
+                              {{ponto}}
+                           </option>
+                     </select>
+                    </label>
+              <div class="table-responsive">
+                 <table class="table table-hover">
+                    <thead>
+                       <tr>
+                          <th>ALERTA</th>
+                          <th>PRODUTO/CATEGORIA</th>
+                          <th>TIPO</th>
+                          <th>DATA</th>
+                          <th width="150"></th>
+                       </tr>
+                    </thead>
+                    <tbody>
+                       <tr ng-repeat="alerta in alertas |filter:{flTipo:filtro, pontoDeVenda:ponto } ">
+                          <td>{{alerta.descricao}}</td>
+                          <td>{{alerta.produto}}</td>
+                          <td>{{alerta.flTipo}}</td>
+                          <td>{{alerta.data.date | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                          <td><button type="button" id="btn-mensagem" data-toggle="modal" data-target="#myModal" ng-click="detalhes(alerta)" class="btn btn-success custom-width">Detalhe</button></td>
+                       </tr>
                     </tbody>
-                    
-                </table> 
-                </div>       
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-body" style="padding:40px 50px;">
-                                <div class="form-group">
-                                    <input type="text" ng-model="items.pontoDeVenda" class="form-control"/>
-                                    <input type="text" ng-model="items.descricao" class="form-control"/>
-                                    <input type="text" ng-model="items.produto" class="form-control"/>
-                                    <input type="text" ng-model="items.flTipo" class="form-control"/>
-                                    <input type="text" ng-model="items.margem" class="form-control"/>
-                                    <input type="text" ng-model="items.participacao" class="form-control"/>
-                                    <input type="text" ng-model="items.data" class="form-control"/>
+                 </table>
+              </div>
+                 <div class="modal" id="myModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" >
+                       <div class="modal-content">
+                          <div class="modal-body" style="padding:40px 50px;">
+                             <div class="form-group">
+                               <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>pontoDeVenda</th>
+                                        <td>{{items.pontoDeVenda}}</td>
+                                    </tr>
+                                    <tr>    
+                                        <th>Descricao</th>
+                                        <td>{{items.descricao}}</td>
+                                    </tr>
+                                    <tr>    
+                                        <th>Produto</th>
+                                        <td>{{items.produto}}</td>
+                                    </tr>
+                                    <tr>    
+                                        <th>Tipo</th>
+                                        <td>{{items.flTipo}}</td>
+                                    </tr>
+                                    
+                                    <tr ng-hide="items.margem == null"> 
+                                        <th>Margem</th>
+                                        <td>{{items.margem}}</td>
+                                    </tr>
+                                    <tr ng-hide="items.participacao == null">    
+                                        <th>Participacao</th>
+                                        <td>{{items.participacao}} %</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Data</th>
+                                        <td>{{items.data.date | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+                                    </tr>
+                                </thead>
+                               </table>
 
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                
-                </div>
-        
+                             <div class="modal-footer">
+                                <button type="button"  class="btn btn-default" data-dismiss="modal" aria-label="Close">Fechar</button>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
         </div>
-    </div>
-
-
-
-</div>
+     </div>
+     </div>

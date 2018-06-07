@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +25,6 @@ public class ProcessadorAlertas {
 		
 		boolean redirect = false;
 		String inputLine;
-		String Share = "%Share";
-		
 		
 		URL url = new URL("http://selecao-involves.agilepromoter.com/pesquisas");
 		        
@@ -96,10 +93,11 @@ public class ProcessadorAlertas {
 					    gateway.salvar(alerta);
 					} else if(precoColetado < precoEstipulado){
 						Alerta alerta = new Alerta();
-					    int margem = precoEstipulado - Integer.parseInt(resposta.getResposta());
+					    int margem = Integer.parseInt(resposta.getResposta()) - precoEstipulado ;
 					    alerta.setMargem(margem);
 					    alerta.setDescricao("Preço abaixo do estipulado!");
-					    alerta.setProduto(ps[i].getProduto());
+						alerta.setProduto(ps[i].getProduto());
+						
 					    alerta.setPontoDeVenda(ps[i].getPonto_de_venda());
 					    alerta.setFlTipo(3);
 					    gateway.salvar(alerta);

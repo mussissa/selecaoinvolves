@@ -54,3 +54,19 @@ body, .form-control{
   height:25px; /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
   border:1px solid #ddd;
 }
+
+
+
+.table-responsive{
+ margin-top: 5%;
+}
+
+.tipo {
+  margin-left: 15px;
+  
+}
+.pontovenda {
+  margin-left: 15px;
+}
+
+
