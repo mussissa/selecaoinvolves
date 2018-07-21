@@ -12,8 +12,7 @@ public class MongoDbFactory {
 	private MongoClient client;
 	
 	public MongoDbFactory() {
-		MongoClientURI mongoURI = new MongoClientURI(System.getenv("MONGODB_URI"));
-		client = MongoClients.create(mongoURI+"");
+		client = MongoClients.create("${MONGODB_URI}");
 	}
 	
 	public MongoDatabase getDb(){
