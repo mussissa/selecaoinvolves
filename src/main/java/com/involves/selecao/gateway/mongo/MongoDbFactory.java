@@ -16,7 +16,7 @@ public class MongoDbFactory {
 	}
 	
 	public MongoDatabase getDb(){
-		String dataBaseName = "selecao";
+		String dataBaseName = "heroku_6nqbgcqr";
 		MongoDatabase database = client.getDatabase(dataBaseName);
 		return database;
 	}
