@@ -12,7 +12,7 @@ public class MongoDbFactory {
 	private MongoClient client;
 	
 	public MongoDbFactory() {
-		client = MongoClients.create("mongodb://heroku_6nqbgcqr:k4lcuoskqmiqq6gi18uf9ai74h@ds141641.mlab.com:41641/heroku_6nqbgcqr");
+		client = MongoClients.create();
 	}
 	
 	public MongoDatabase getDb(){
