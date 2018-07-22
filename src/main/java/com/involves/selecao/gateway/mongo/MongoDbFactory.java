@@ -7,6 +7,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 
 @Configuration
+@PropertySource({ "classpath:application.properties" })
 public class MongoDbFactory {
 	
 	private MongoClient client;
@@ -16,7 +17,7 @@ public class MongoDbFactory {
 	}
 	
 	public MongoDatabase getDb(){
-		String dataBaseName = "heroku_6nqbgcqr";
+		String dataBaseName = "heroku_pj1z4pbh";
 		MongoDatabase database = client.getDatabase(dataBaseName);
 		return database;
 	}
