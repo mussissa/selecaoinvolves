@@ -7,7 +7,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 
 @Configuration
-@PropertySource({ "classpath:application.properties" })
+
 public class MongoDbFactory {
 	
 	private MongoClient client;
